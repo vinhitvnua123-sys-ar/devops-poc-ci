@@ -1,55 +1,13 @@
-name: Deploy to ECS
+name: Demo CI
 
 on:
   push:
     branches: [ "main" ]
 
-permissions:
-  id-token: write
-  contents: read
-
 jobs:
-  deploy:
+  first_job:
     runs-on: ubuntu-latest
 
-    env:
-      AWS_REGION: ap-northeast-1
-      ECR_REPOSITORY: ecs-poc
-      ECS_CLUSTER: ecs-poc-cluster
-      ECS_SERVICE: ecs-poc-service
-      CONTAINER_NAME: web
-
     steps:
-
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v4
-      with:
-        role-to-assume: arn:aws:iam::102407615181:role/github-ecs-deploy-role
-        aws-region: ap-northeast-1
-
-    - name: Login to Amazon ECR
-      uses: aws-actions/amazon-ecr-login@v2
-
-    - name: Build Docker image
-      run: |
-        docker build -t ecs-poc .
-
-    - name: Tag Docker image
-      run: |
-        docker tag ecs-poc:latest \
-        102407615181.dkr.ecr.ap-northeast-1.amazonaws.com/ecs-poc:latest
-
-    - name: Push image to ECR
-      run: |
-        docker push \
-        102407615181.dkr.ecr.ap-northeast-1.amazonaws.com/ecs-poc:latest
-
-    - name: Deploy ECS
-      run: |
-        aws ecs update-service \
-          --cluster ecs-poc-cluster \
-          --service ecs-poc-service \
-          --force-new-deployment
+      - name: Run echo
+        run: echo "this is first job"
