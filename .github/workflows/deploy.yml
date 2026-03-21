@@ -7,6 +7,7 @@ on:
 jobs:
   timeout_job:
     runs-on: ubuntu-latest
+    timeout-minutes: 1
 
     steps:
       - name: Run echo
