@@ -22,4 +22,7 @@ jobs:
     needs: first-job
     steps:
       - name: Run echo
-        run: echo "hello"        
+        run:  |
+         echo "hello"
+         ls
+         pwd 
