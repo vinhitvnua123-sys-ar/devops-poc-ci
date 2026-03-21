@@ -5,15 +5,9 @@ on:
     branches: [ "main" ]
 
 jobs:
-  first_job:
+  timeout_job:
     runs-on: ubuntu-latest
 
     steps:
       - name: Run echo
-        run: echo "this is first job"
-  second_job:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Run echo
-        run: echo "this is second job"
+        run: echo "hello"
