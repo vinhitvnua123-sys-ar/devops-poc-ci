@@ -21,5 +21,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: first-job
     steps:
-      - name: Run echo
-        run: ./test.sh
+    - uses: actions/checkout@v4
+
+    - name: Grant permission
+      run: chmod +x test.sh
+
+    - name: Run script
+      run: ./test.sh
