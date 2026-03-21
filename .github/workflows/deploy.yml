@@ -8,11 +8,11 @@ jobs:
   first-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Run say
-        run: say "hello firsy job"
+      - name: Run echo
+        run: echo "hello firsy job"
   seconds-job:
     runs-on: ubuntu-latest
     needs: first-job
     steps:
-      - name: Run say
-        run: say "hello"        
+      - name: Run echo
+        run: echo "hello"        
