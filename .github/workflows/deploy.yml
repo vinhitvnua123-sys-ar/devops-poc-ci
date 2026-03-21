@@ -12,7 +12,7 @@ jobs:
       - name: Run echo
         run: echo "this is first job"
   second_job:
-    runs-on: ubuntu-latest 1.0
+    runs-on: ubuntu-latest
 
     steps:
       - name: Run echo
