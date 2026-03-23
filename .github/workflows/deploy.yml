@@ -22,6 +22,9 @@ jobs:
   inside_job:
     runs-on: ubuntu-latest
     needs: first-job
+    env:
+      name : "vinhpd2"
+      age : "32"
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v4
@@ -30,6 +33,8 @@ jobs:
 
       - name: Show file
         run: cat helloworld.txt
+      - name: ENV
+        run : echo "the env value is $name and age $age"  
 
   seconds-job:
     runs-on: ubuntu-latest
@@ -50,3 +55,4 @@ jobs:
 
       - name: Show artifact
         run: cat helloworld.txt
+ 
