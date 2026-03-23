@@ -34,8 +34,9 @@ jobs:
       - name: Show file
         run: cat helloworld.txt
       - name: ENV
-        run : echo "the env value is $name and age $age"
-              echo "the skip method"  
+        run : |
+          echo "the env value is $name and age $age"
+          cho "the skip method"  
 
   seconds-job:
     runs-on: ubuntu-latest
