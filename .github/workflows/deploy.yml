@@ -8,23 +8,45 @@ jobs:
   first-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Run echo
-        run: echo "hello firsy job"
+      - uses: actions/checkout@v4
+
+      - name: Create file
+        run: echo "hello world" > helloworld.txt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-file
+          path: helloworld.txt
 
   inside_job:
     runs-on: ubuntu-latest
     needs: first-job
     steps:
-      - name: Run echo
-        run: echo "this is inside job" 
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: test-file
+
+      - name: Show file
+        run: cat helloworld.txt
+
   seconds-job:
     runs-on: ubuntu-latest
     needs: first-job
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Grant permission
-      run: chmod +x .github/workflows/test.sh
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: test-file
 
-    - name: Run script
-      run: ./.github/workflows/test.sh
+      - name: Grant permission
+        run: chmod +x .github/workflows/test.sh
+
+      - name: Run script
+        run: ./.github/workflows/test.sh
+
+      - name: Show artifact
+        run: cat helloworld.txt
