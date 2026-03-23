@@ -36,7 +36,7 @@ jobs:
       - name: ENV
         run : |
           echo "the env value is $name and age $age"
-          cho "the skip method"  
+          cho "the skip again"  
 
   seconds-job:
     runs-on: ubuntu-latest
